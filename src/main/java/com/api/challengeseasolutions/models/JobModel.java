@@ -12,9 +12,9 @@ public class JobModel {
     private long id;
     private String jobName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sectorName")
-    private SectorModel sectorModel;
+    @ManyToOne
+    @JoinColumn(name = "sectorName", nullable = true )
+    private SectorModel sectorName;
 
     public String getJobName() {
         return jobName;
@@ -33,12 +33,14 @@ public class JobModel {
     }
 
     public SectorModel getSectorName() {
-        return sectorModel;
+        return sectorName;
     }
 
     public void setSectorName(SectorModel sectorName) {
-        this.sectorModel = sectorName;
+        this.sectorName = sectorName;
     }
+
+
 
 }
 

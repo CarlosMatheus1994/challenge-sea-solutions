@@ -16,18 +16,10 @@ public class SectorModel {
     @Column(unique = true, nullable = false)
     private String sectorName;
 
-    public JobModel getJobModel() {
-        return jobModel;
-    }
 
-    public void setJobModel(JobModel jobModel) {
-        this.jobModel = jobModel;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "jobName")
-    private JobModel jobModel;
-
+    @Column(unique = true)
+    @OneToMany(mappedBy = "sectorName" , cascade = CascadeType.ALL)
+    private List<JobModel> jobModels;
     public long getId() {
         return id;
     }

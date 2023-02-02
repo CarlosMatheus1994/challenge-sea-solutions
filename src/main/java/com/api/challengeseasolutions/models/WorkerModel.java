@@ -1,5 +1,8 @@
 package com.api.challengeseasolutions.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +15,18 @@ public class WorkerModel {
     private Integer age;
     @Column(unique = true, nullable = false)
     private String cpf;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id",updatable = true)
+    private SectorModel sectorModel;
+
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(referencedColumnName ="id" , updatable = true)
+    private JobModel jobModel;
+
 
     public long getId() {
         return id;
